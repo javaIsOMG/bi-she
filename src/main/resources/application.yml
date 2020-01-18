@@ -1,0 +1,53 @@
+spring:
+  datasource:
+    username: root
+    password: 612726
+    url: jdbc:mysql://139.155.31.185:3306/seckil?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      max-lifetime: 180000
+      auto-commit: true
+      pool-name: HikariCP
+      connection-timeout: 3000
+      idle-timeout: 3000
+      maximum-pool-size: 15
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: true
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+
+#  thymeleaf:
+#    prefix: classpath:/templates/
+#    suffix: .html
+#    mode: HTML5
+#    encoding: UTF-8
+#    servlet:
+#      content-type: text/html
+#    cache: false
+  redis:
+    database: 1
+    host: 139.155.31.185
+    port: 20000
+    password: 123456
+  kafka:
+    producer:
+      bootstrap-servers: kafka-1:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      bootstrap-servers: kafka-1:9092
+      group-id: ssm-secounds-kill
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      topic: test
+      thread: 3
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 500MB
